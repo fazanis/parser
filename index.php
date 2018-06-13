@@ -1,10 +1,6 @@
 <?php
 include_once 'config.php';
-//$db = Db::getConnection();
-//$sql = 'INSERT INTO `parser`.`kx4i8_users` (`name`, `username`, `email`, `password`, `block`, `sendEmail`, `registerDate`, `lastvisitDate`, `activation`, `params`, `lastResetTime`) VALUES ("Кравчук Александр", "Кравчук Александр", "", "", "0", "0", "2018-06-13 00:00:00", "2018-06-13 00:00:00", "", "", "2018-06-13 00:00:00")';
-//$result = $db->prepare($sql);
-//$result->execute();
-//die();
+
 $row = 1;
 if (($handle = fopen("test.csv", "r")) !== FALSE) {
     while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
@@ -25,7 +21,6 @@ if (($handle = fopen("test.csv", "r")) !== FALSE) {
         $lastResetTime = '0000-00-00 00:00:00';
         $resetCount  = '0';
         $db = Db::getConnection();
-//        $sql = 'INSERT INTO kx4i8_users (name,username,email,password, registerDate,params,block,sendEmail,lastvisitDate,lastResetTime,resetCount) VALUES (:name, :username, :email, :password, :dateReg,:params,:block,:sendEmail,:lastvisitDate,:lastResetTime,:resetCount)';
         $sql = 'INSERT INTO kx4i8_users (name, username, email, password, block, sendEmail, registerDate, lastvisitDate, activation, params, lastResetTime) VALUES 
 (:name, :username, :email, :password,:block, :sendEmail, :registerDate, :lastvisitDate, "", "", :lastResetTime)';
         $result = $db->prepare($sql);
